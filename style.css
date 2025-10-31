@@ -1,0 +1,245 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: animacaoGradiente 15s ease infinite;
+    color: #333;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+@keyframes animacaoGradiente {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container-aplicativo { 
+    display: flex; 
+    min-height: 100vh; 
+    flex-wrap: wrap;
+}
+.coluna-entrada { flex-basis: 450px; flex-shrink: 0; display: flex; justify-content: center; align-items: flex-start; padding: 30px; box-sizing: border-box; z-index: 10; padding-top: 50px; }
+.cartao-entrada { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); padding: 30px; width: 100%; max-width: 400px; }
+
+.coluna-notas {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+    align-content: flex-start;
+}
+
+.cartao-entrada h1 { margin-top: 0; font-size: 2em; }
+.cartao-entrada p { color: #666; line-height: 1.5; }
+.secao-entrada { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+#inputTitulo, #inputDescricao, #inputDataConclusao, #inputHoraConclusao { 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', sans-serif; 
+}
+#inputTitulo:focus, #inputDescricao:focus, #inputDataConclusao:focus, #inputHoraConclusao:focus { 
+    outline: none; 
+    border-color: #5c67f2; 
+}
+#inputDescricao { resize: vertical; min-height: 60px; }
+#botaoAdicionarTarefa { padding: 12px 20px; border: none; background-color: #5c67f2; color: white; border-radius: 8px; font-size: 17px; cursor: pointer; transition: background-color 0.3s; }
+#botaoAdicionarTarefa:hover { background-color: #4a54c4; }
+
+.secao-filtros { margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.secao-filtros label { font-weight: bold; color: #555; }
+.filtro-btn { padding: 6px 12px; border: 1px solid #ccc; background-color: #f7f7f7; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+.filtro-btn:hover { background-color: #e9e9e9; border-color: #aaa; }
+.filtro-btn.filtro-ativo { background-color: #5c67f2; color: white; border-color: #5c67f2; }
+.campo-data { display: flex; flex-direction: column; gap: 5px; }
+.campo-data label { font-size: 15px; color: #555; }
+
+.nota-adesiva {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: 240px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+    overflow-wrap: break-word;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.nota-adesiva:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.btn-deletar-nota { position: absolute; top: 8px; right: 8px; background-color: rgba(255, 77, 77, 0.8); color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; opacity: 0; transition: opacity 0.2s; font-weight: bold; z-index: 5; }
+.nota-adesiva:hover .btn-deletar-nota { opacity: 1; }
+.btn-deletar-nota:hover { background-color: #ff4d4d; }
+
+.nota-titulo { font-size: 1.3em; font-weight: bold; margin: 0 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+.nota-descricao { font-family: 'Caveat', cursive; font-size: 1.5em; line-height: 1.4; flex-grow: 1; }
+.nota-rodape { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+.nota-data { font-size: 0.8em; font-weight: bold; color: #555; }
+
+.nota-titulo textarea, .nota-descricao textarea {
+    width: 100%;
+    border: 1px dashed #555;
+    background-color: rgba(255,255,255,0.5);
+    padding: 5px;
+    margin: -5px;
+    box-sizing: border-box;
+    resize: none;
+    font: inherit;
+    line-height: inherit;
+}
+
+.container-paginacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-basis: 100%;
+}
+.pagina-btn {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+.pagina-btn:hover {
+    background-color: #e9e9e9;
+    border-color: #aaa;
+}
+.pagina-btn.pagina-ativa {
+    background-color: #5c67f2;
+    color: white;
+    border-color: #5c67f2;
+}
+.nota-rodape-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap; 
+    min-width: 0;
+}
+.btn-concluir-nota {
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    accent-color: #5c67f2; 
+    flex-shrink: 0; 
+}
+.nota-concluida {
+    opacity: 0.65;
+}
+.nota-concluida .nota-titulo,
+.nota-concluida .nota-descricao {
+    text-decoration: line-through 2px;
+    color: #333;
+}
+.campo-data-hora {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+.campo-data, .campo-hora {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+.campo-hora label {
+    font-size: 15px;
+    color: #555;
+}
+.nota-paleta-cores {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.paleta-trigger {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+.paleta-trigger:hover {
+    transform: scale(1.1);
+    background-color: #f7f7f7;
+}
+.cor-opcao {
+    width: 18px; 
+    height: 18px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    border: 1px solid rgba(0,0,0,0.2); 
+    transition: transform 0.2s;
+    
+    display: none;
+}
+.cor-opcao:hover { 
+    transform: scale(1.2); 
+}
+.nota-paleta-cores.ativa {
+    position: absolute;
+    right: 0;
+    bottom: 25px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 20;
+}
+.nota-paleta-cores.ativa .paleta-trigger {
+    display: none; 
+}
+@media (max-width: 900px) {
+    .container-aplicativo { 
+        flex-direction: column; 
+        align-items: center; 
+    }
+    .coluna-entrada { flex-basis: auto; width: 90%; position: relative; z-index: 10; padding-top: 20px; }
+    .coluna-notas { 
+        position: relative; 
+        width: 100%; 
+        min-height: 400px;
+        margin-top: 20px; 
+        padding: 20px;
+    }
+    .container-paginacao {
+        padding-top: 0;
+    }
+    .nota-adesiva {
+        z-index: 1;
+    }
+    .nota-adesiva:hover {
+        z-index: 2;
+    }
+}

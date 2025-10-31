@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro de Tarefas (Post-its)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container-aplicativo">
+        <div class="coluna-entrada">
+            <div class="cartao-entrada">
+                <h1>Minhas Tarefas</h1>
+                <p>Adicione e organize suas tarefas no quadro.</p>
+                
+                <div class="secao-filtros">
+                    <label>Mostrar:</label>
+                    <button class="filtro-btn filtro-ativo" data-filtro="todos">Todos</button>
+                    <button class="filtro-btn" data-filtro="high">Alta</button>
+                    <button class="filtro-btn" data-filtro="medium">Média</button>
+                    <button class="filtro-btn" data-filtro="low">Baixa</button>
+                </div>
+                
+                <div class="secao-entrada">
+                    <input type="text" id="inputTitulo" placeholder="Título da tarefa...">
+                    <textarea id="inputDescricao" placeholder="Descreva a atividade..." rows="3"></textarea>
+
+                    <div class="campo-data-hora">
+                        <div class="campo-data">
+                            <label for="inputDataConclusao">Data de Conclusão:</label>
+                            <input type="date" id="inputDataConclusao">
+                        </div>
+                        <div class="campo-hora">
+                            <label for="inputHoraConclusao">Horário:</label>
+                            <input type="time" id="inputHoraConclusao">
+                        </div>
+                    </div>
+                    <div class="selecao-prioridade">
+                        <label for="selectPrioridade">Prioridade:</label>
+                        <select id="selectPrioridade">
+                            <option value="high">Alta</option>
+                            <option value="medium" selected>Média</option>
+                            <option value="low">Baixa</option>
+                        </select>
+                    </div>
+
+                    <button id="botaoAdicionarTarefa">Adicionar Tarefa</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="coluna-notas" id="containerNotasAdesivas">
+            </div>
+
+        <div class="container-paginacao" id="containerPaginacao">
+            </div>
+
+    </div>
+
+    <script src="codigo.js"></script>
+</body>
+</html>
